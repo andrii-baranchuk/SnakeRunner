@@ -46,6 +46,8 @@ namespace SnakeRunner.Gameplay.Unit
             var newPosition = rigidbody.position;
             newPosition.x = targetX;
 
+
+            transform.LookAt(newPosition);
             rigidbody.MovePosition(newPosition);
         }
 
