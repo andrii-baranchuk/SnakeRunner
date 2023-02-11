@@ -2,18 +2,20 @@
 namespace SnakeRunner.Gameplay.Unit
 {
     using DG.Tweening;
+    using NaughtyAttributes;
     using UnityEngine;
 
     [RequireComponent(typeof(Rigidbody))]
     public class UnitMovement : MonoBehaviour
     {
-        [Header("Settings")]
+        [Header("Forward Settings")]
         [SerializeField]
         private float forwardSpeed;
         
-        [SerializeField]
+        [Header("Horizontal Settings")]
+        [SerializeField, Label("Movement Duration")]
         private float horizontalMovementDuration;
-        [SerializeField]
+        [SerializeField, Label("Movement Ease")]
         private Ease horizontalMovementEase;
         
         private bool forwardMovementEnabled;

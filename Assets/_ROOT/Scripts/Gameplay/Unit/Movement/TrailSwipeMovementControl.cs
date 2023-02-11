@@ -4,16 +4,17 @@
     using Infrastructure.ServiceLocator;
     using Input;
     using Level;
+    using NaughtyAttributes;
     using UnityEngine;
 
     [RequireComponent(typeof(UnitMovement))]
     public class TrailSwipeMovementControl : MonoBehaviour
     {
         [Header("Trails Info")]
-        [SerializeField]
+        [SerializeField, ReadOnly]
         private Trail currentTrail;
 
-        [SerializeField]
+        [SerializeField, ReadOnly]
         private Trail targetTrail;
         
         [Header("References")]
