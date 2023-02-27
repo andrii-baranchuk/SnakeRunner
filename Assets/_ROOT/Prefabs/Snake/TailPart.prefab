@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6818592109602829959}
   - component: {fileID: 6818592109602829952}
   - component: {fileID: 6818592109602829958}
+  - component: {fileID: 5477980494947871513}
+  - component: {fileID: 6937920077688211022}
   m_Layer: 0
   m_Name: TailPart
   m_TagString: Untagged
@@ -98,3 +100,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 5
   target: {fileID: 0}
+--- !u!65 &5477980494947871513
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6818592109602829955}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6937920077688211022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6818592109602829955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9330c49a6d43b289c8340ecd1c3a1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <CurrentColor>k__BackingField:
+    <ColorType>k__BackingField: 0
+    <Color>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  meshRenderers:
+  - {fileID: 6818592109602829952}
