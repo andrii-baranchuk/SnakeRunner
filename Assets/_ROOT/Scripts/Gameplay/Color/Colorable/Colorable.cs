@@ -35,5 +35,7 @@
             
             meshRenderers.ForEach(m => m.material.color = CurrentColor.Color);
         }
+
+        public bool SameColorAs(Colorable other) => CurrentColor.ColorType == other.CurrentColor.ColorType;
     }
 }

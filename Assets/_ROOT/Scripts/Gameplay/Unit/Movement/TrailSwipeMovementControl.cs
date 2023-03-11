@@ -10,6 +10,8 @@
     [RequireComponent(typeof(UnitMovement))]
     public class TrailSwipeMovementControl : MonoBehaviour
     {
+        public bool Enabled { get; private set; }
+        
         [Header("Trails Info")]
         [SerializeField, ReadOnly]
         private Trail currentTrail;
@@ -38,9 +40,21 @@
         private void Start()
         {
             currentTrail = trails.InitialTrail();
-            
+            Enable();
+        }
+
+        public void Enable()
+        {
             inputProvider.OnSwipe += OnSwipe;
             inputProvider.OnTap += OnTap;
+            Enabled = true;
+        }
+
+        public void Disable()
+        {
+            inputProvider.OnSwipe -= OnSwipe;
+            inputProvider.OnTap -= OnTap;
+            Enabled = true;
         }
         
 
@@ -80,14 +94,12 @@
             return potentialTrail;
         }
 
-        private void OnTap(Vector2 position) => Enable();
-        private void Enable() => unitMovement.ForwardMovement(true);
+        private void OnTap(Vector2 position) => unitMovement.ForwardMovement(true);
         private bool SideMovementInProgress() => targetTrail != null;
 
         private void OnDestroy()
         {
-            inputProvider.OnSwipe -= OnSwipe;
-            inputProvider.OnTap -= OnTap;
+            Disable();
         }
     }
 }

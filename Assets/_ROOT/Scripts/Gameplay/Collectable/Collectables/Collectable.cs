@@ -13,6 +13,11 @@
 
         protected virtual void Awake() => Initialize();
 
+        protected virtual void OnValidate()
+        {
+            
+        }
+
         private void Initialize()
         {
             Type = GetType();

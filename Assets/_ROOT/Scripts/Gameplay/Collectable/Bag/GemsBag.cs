@@ -13,7 +13,7 @@
             wallet = AllServices.Container.Single<ICurrencyWallet<GemsCurrency>>();
         }
 
-        public override void Put(Collectable collectable)
+        protected override void Put(GemsCollectable collectable)
         {
             wallet.Put(collectable.Count);
         }

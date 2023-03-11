@@ -11,12 +11,15 @@
         {
             Type = typeof(T);
         }
+
+        public override void Put(Collectable collectable) => Put(collectable as T);
+
+        protected abstract void Put(T collectable);
     }
 
     public abstract class CollectableBag : MonoBehaviour
     {
-        public virtual Type Type { get; protected set; }
-
+        public Type Type { get; protected set; }
         public abstract void Put(Collectable collectable);
     }
 }
