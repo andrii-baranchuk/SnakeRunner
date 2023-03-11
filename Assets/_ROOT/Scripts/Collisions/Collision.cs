@@ -6,7 +6,7 @@
     public abstract class Collision<T> : MonoBehaviour
     {
         public event Action<T> OnEnter;
-        public event Action<T> OnStay; 
+        //public event Action<T> OnStay; 
         public event Action<T> OnExit;
 
         protected virtual void OnCollisionEnter(Collision other)
@@ -15,11 +15,11 @@
                 OnEnter?.Invoke(component);
         }
 
-        protected virtual void OnCollisionStay(Collision other)
-        {
-            if(other.gameObject.TryGetComponent(out T component))
-                OnStay?.Invoke(component);
-        }
+        // protected virtual void OnCollisionStay(Collision other)
+        // {
+        //     if(other.gameObject.TryGetComponent(out T component))
+        //         OnStay?.Invoke(component);
+        // }
 
         protected virtual void OnCollisionExit(Collision other)
         {
