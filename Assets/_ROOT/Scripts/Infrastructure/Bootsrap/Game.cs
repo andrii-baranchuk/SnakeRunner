@@ -1,5 +1,7 @@
 ﻿namespace Infrastructure.Bootstrap
 {
+    using Economics;
+    using Economics.Wallet;
     using Input;
     using ServiceLocator;
     using SnakeRunner.Gameplay.Color;
@@ -13,7 +15,8 @@
             services = AllServices.Container;
             
             services.RegisterSingle<IInputProvider>(new InputProvider());
-            services.RegisterSingle<ColorSettings>(ColorSettings.Load());
+            services.RegisterSingle(ColorSettings.Load());
+            services.RegisterSingle<ICurrencyWallet<GemsCurrency>>(new CurrencyWallet<GemsCurrency>());
         }
     }
 }
