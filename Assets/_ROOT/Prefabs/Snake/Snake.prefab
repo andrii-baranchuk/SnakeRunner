@@ -620,6 +620,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Head
       objectReference: {fileID: 0}
+    - target: {fileID: 1988848193212302814, guid: 2df997a9b8d8a0f48a7bc9f30dce1151,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1988848193212302815, guid: 2df997a9b8d8a0f48a7bc9f30dce1151,
         type: 3}
       propertyPath: m_RootOrder
