@@ -16,7 +16,7 @@
         public void Kill()
         {
             movementControl.Disable();
-            movement.ForwardMovement(false);
+            movement.Disable();
             OnDeath?.Invoke();
         }
     }

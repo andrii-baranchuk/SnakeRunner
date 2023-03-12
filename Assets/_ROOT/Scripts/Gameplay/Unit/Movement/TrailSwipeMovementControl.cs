@@ -1,6 +1,5 @@
 ﻿namespace SnakeRunner.Gameplay.Unit
 {
-    using DG.Tweening;
     using Infrastructure.ServiceLocator;
     using Input;
     using Level;
@@ -60,6 +59,8 @@
 
         private void OnSwipe(Swipe swipe)
         {
+            unitMovement.Enable();
+            
             if(SideMovementInProgress()) return;
 
             var potentialTrail = ChooseTrail(swipe);
@@ -74,12 +75,13 @@
         {
             targetTrail = to;
             unitMovement
-                .SideMovement(targetTrail.transform.position.x)
-                .OnComplete(() =>
-                {
-                    currentTrail = targetTrail;
-                    targetTrail = null;
-                });
+                .SideMovement(targetTrail.transform.position.x, OnSideMovementComplete);
+        }
+
+        private void OnSideMovementComplete()
+        {
+            currentTrail = targetTrail;
+            targetTrail = null;
         }
 
         private Trail ChooseTrail(Swipe swipe)
@@ -94,12 +96,7 @@
             return potentialTrail;
         }
 
-        private void OnTap(Vector2 position) => unitMovement.ForwardMovement(true);
+        private void OnTap(Vector2 position) => unitMovement.Enable();
         private bool SideMovementInProgress() => targetTrail != null;
-
-        private void OnDestroy()
-        {
-            Disable();
-        }
     }
 }

@@ -1,11 +1,12 @@
 #pragma warning disable CS0108, CS0114
 namespace SnakeRunner.Gameplay.Unit
 {
+    using System;
+    using System.Collections;
     using DG.Tweening;
     using NaughtyAttributes;
     using UnityEngine;
-
-    [RequireComponent(typeof(Rigidbody))]
+    
     public class UnitMovement : MonoBehaviour
     {
         [Header("Forward Settings")]
@@ -18,50 +19,64 @@ namespace SnakeRunner.Gameplay.Unit
         [SerializeField, Label("Movement Ease")]
         private Ease horizontalMovementEase;
         
-        private bool forwardMovementEnabled;
-        private Rigidbody rigidbody;
+        private bool Enabled;
 
-        private void Awake()
+        private float sideMovementDelta;
+
+        private void Start()
         {
-            rigidbody = GetComponent<Rigidbody>();
+            sideMovementDelta = transform.position.x;
         }
 
         private void FixedUpdate() => Move();
 
-        public void ForwardMovement(bool enable)
-        {
-            forwardMovementEnabled = enable;
-        }
-
-        public Tweener SideMovement(float targetX)
-        {
-            return DOVirtual
-                .Float(transform.position.x, targetX, horizontalMovementDuration, SetTargetX)
-                .SetUpdate(UpdateType.Fixed)
-                .SetEase(horizontalMovementEase);
-        }
-
-        private void SetTargetX(float targetX)
-        {
-            var newPosition = rigidbody.position;
-            newPosition.x = targetX;
-
-
-            transform.LookAt(newPosition);
-            rigidbody.MovePosition(newPosition);
-        }
-
         private void Move()
         {
-            ForwardMovement();
+            if (Enabled)
+            {
+                transform.position = new Vector3
+                (
+                    sideMovementDelta,
+                    transform.position.y, 
+                    transform.position.z + forwardSpeed * Time.fixedDeltaTime
+                );
+            }
         }
 
-        private void ForwardMovement()
+        public void SideMovement(float targetX, Action onComplete = null)
         {
-            if (forwardMovementEnabled)
+            StartCoroutine(SideMovementRoutine(targetX, onComplete));
+        }
+
+        private IEnumerator SideMovementRoutine(float targetX, Action onComplete = null)
+        {
+            float initialX = transform.position.x;
+            
+            float timeElapsed = 0;
+
+            while (timeElapsed < horizontalMovementDuration)
             {
-                rigidbody.MovePosition(transform.position + Vector3.forward * (forwardSpeed * Time.fixedDeltaTime));
+                var ratio = Mathf.Clamp01(timeElapsed / horizontalMovementDuration);
+                
+                sideMovementDelta = Mathf.Lerp(initialX, targetX, ratio);
+                
+                timeElapsed += Time.fixedDeltaTime;
+                yield return new WaitForFixedUpdate();
             }
+            
+            sideMovementDelta = targetX;
+            
+            onComplete?.Invoke();
+        }
+
+        public void Enable()
+        {
+            Enabled = true;
+        }
+
+        public void Disable()
+        {
+            Enabled = false;
         }
     }
 }
