@@ -3,7 +3,6 @@
     using Infrastructure.ServiceLocator;
     using Input;
     using Level;
-    using NaughtyAttributes;
     using UnityEngine;
 
     [RequireComponent(typeof(UnitMovement))]
@@ -12,10 +11,10 @@
         public bool Enabled { get; private set; }
         
         [Header("Trails Info")]
-        [SerializeField, ReadOnly]
+        [SerializeField]
         private Trail currentTrail;
 
-        [SerializeField, ReadOnly]
+        [SerializeField]
         private Trail targetTrail;
         
         [Header("References")]

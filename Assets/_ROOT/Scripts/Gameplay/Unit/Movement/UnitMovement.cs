@@ -3,8 +3,6 @@ namespace SnakeRunner.Gameplay.Unit
 {
     using System;
     using System.Collections;
-    using DG.Tweening;
-    using NaughtyAttributes;
     using UnityEngine;
     
     public class UnitMovement : MonoBehaviour
@@ -14,12 +12,10 @@ namespace SnakeRunner.Gameplay.Unit
         private float forwardSpeed;
         
         [Header("Horizontal Settings")]
-        [SerializeField, Label("Movement Duration")]
+        [SerializeField]
         private float horizontalMovementDuration;
-        [SerializeField, Label("Movement Ease")]
-        private Ease horizontalMovementEase;
-        
-        private bool Enabled;
+
+        public bool Enabled { get; private set; }
 
         private float sideMovementDelta;
 

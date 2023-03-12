@@ -1,12 +1,11 @@
 ﻿namespace SnakeRunner.Gameplay.Color
 {
-    using NaughtyAttributes;
     using UnityEngine;
 
     [RequireComponent(typeof(ColorableTrigger))]
     public class TriggerColorChanger : ColorChanger
     {
-        [SerializeField, ReadOnly]
+        [SerializeField]
         private ColorableTrigger trigger;
         
         protected override void OnValidate()
