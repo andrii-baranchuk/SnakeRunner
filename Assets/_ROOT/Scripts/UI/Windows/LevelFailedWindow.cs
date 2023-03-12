@@ -1,9 +1,9 @@
 ﻿namespace UI
 {
-    using UnityEngine;
+    using UnityEngine.UI;
 
     public class LevelFailedWindow : Window
     {
-        
+        public Button RestartButton;
     }
 }

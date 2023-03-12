@@ -54,7 +54,7 @@
         {
             inputProvider.OnSwipe -= OnSwipe;
             inputProvider.OnTap -= OnTap;
-            Enabled = true;
+            Enabled = false;
         }
         
 
