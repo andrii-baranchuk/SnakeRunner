@@ -7,6 +7,7 @@
 
     public class LevelFlow : MonoBehaviour
     {
+        [SerializeField]
         private Level level;
 
         [SerializeField]
@@ -15,16 +16,11 @@
         private IUIBuilder uiBuilder;
         private CameraService cameraService;
 
-        private void Awake()
-        {
-            level = GetComponentInChildren<Level>();
-        }
-
         private void Start()
         {
             uiBuilder = AllServices.Container.Single<IUIBuilder>();
             cameraService = AllServices.Container.Single<CameraService>();
-            Setup(level);
+            Restart();
         }
 
         private void CreateLevelFailedWindow()
@@ -33,7 +29,7 @@
             window.RestartButton.onClick.AddListener(Restart);
             window.RestartButton.onClick.AddListener(window.Close);
         }
-
+        
         private void Restart()
         {
             CleanUp();
@@ -57,6 +53,7 @@
             if (level != null)
             {
                 level.Failed -= CreateLevelFailedWindow;
+                level.gameObject.SetActive(false);
                 Destroy(level.gameObject);
             }
         }

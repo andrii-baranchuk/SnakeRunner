@@ -12,7 +12,17 @@
 
         private void Start()
         {
-            Unit.OnDeath += () => Failed?.Invoke();
+            Unit.OnDeath += Fail;
+        }
+
+        private void Fail()
+        {
+            Failed?.Invoke();
+        }
+
+        private void OnDestroy()
+        {
+            Unit.OnDeath -= Fail;
         }
     }
 }
