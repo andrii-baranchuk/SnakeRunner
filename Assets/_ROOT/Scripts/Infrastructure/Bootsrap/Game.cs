@@ -6,6 +6,7 @@
     using ServiceLocator;
     using SnakeRunner.Gameplay.Color;
     using Tools;
+    using UI;
 
     public class Game
     {
@@ -17,6 +18,7 @@
             services.RegisterSingle<IInputProvider>(new InputProvider());
             services.RegisterSingle(ColorSettings.Load());
             services.RegisterSingle<ICurrencyWallet<GemsCurrency>>(new CurrencyWallet<GemsCurrency>());
+            services.RegisterSingle<IUIBuilder>(new UIBuilder());
         }
     }
 }
