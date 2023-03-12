@@ -150,7 +150,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forwardSpeed: 6
   horizontalMovementDuration: 0.3
-  horizontalMovementEase: 3
 --- !u!114 &1988848193212302810
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -74,7 +74,7 @@
         {
             targetTrail = to;
             unitMovement
-                .SideMovement(targetTrail.transform.position.x, OnSideMovementComplete);
+                .SideMovementAndRotation(targetTrail.transform.position.x, OnSideMovementComplete);
         }
 
         private void OnSideMovementComplete()
